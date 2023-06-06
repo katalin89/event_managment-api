@@ -83,7 +83,19 @@ public class User implements Comparable<User> {
         }else
             throw new BookNotFoundException();
     }
+
+    public boolean exists(Long id){
+        for(Event e:events){
+            if(e.getId()==id){
+                return  true;
+            }
+
+        }
+        return  false;
+    }
 }
+
+
 
 
 

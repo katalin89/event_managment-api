@@ -3,6 +3,7 @@ package ro.mycode.event_managmentapi.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import ro.mycode.event_managmentapi.exceptions.EventNotFoundException;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -76,7 +77,7 @@ public class User implements Comparable<User> {
         event.setUser(this);
     }
 
-    public  void deleteEvent(Event event)throws EventNotFoundException{
+    public  void deleteEvent(Event event)throws EventNotFoundException {
         if(exists(event.getId())){
             this.events.remove(event);
             event.setUser(null);

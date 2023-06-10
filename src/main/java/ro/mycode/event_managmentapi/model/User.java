@@ -81,7 +81,7 @@ public class User implements Comparable<User> {
             this.events.remove(event);
             event.setUser(null);
         }else
-            throw new BookNotFoundException();
+            throw new EventNotFoundException();
     }
 
     public boolean exists(Long id){

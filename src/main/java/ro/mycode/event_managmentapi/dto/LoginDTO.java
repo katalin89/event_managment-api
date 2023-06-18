@@ -5,16 +5,12 @@ import lombok.Data;
 import lombok.NonNull;
 import lombok.experimental.SuperBuilder;
 
-import java.time.LocalDate;
-
 @Data
 @AllArgsConstructor
 @SuperBuilder
-public class UpdateDto {
+public class LoginDTO {
     @NonNull
-    private Long id;
-    private String eventTitle;
-    private String description;
-    private LocalDate date;
-    private String location;
+    private String email;
+    @NonNull
+    private String password;
 }

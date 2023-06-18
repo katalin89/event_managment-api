@@ -52,10 +52,9 @@ public class Event implements Comparable<Event>{
     @ToString.Exclude
     private User user;
 
-
-
-
-
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 
     @Override
     public int compareTo(Event o) {

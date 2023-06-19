@@ -22,7 +22,7 @@ public class EventResource {
         this.eventService=eventService;
     }
 
-    @PostMapping("updateEvent")
+    @PutMapping("updateEvent")
     public ResponseEntity update(@Valid @RequestBody UpdateDTO event) {
         this.eventService.update(event);
         return  new ResponseEntity<>(HttpStatus.ACCEPTED);

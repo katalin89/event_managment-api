@@ -21,7 +21,7 @@ import java.util.List;
 @SuperBuilder
 public class User implements Comparable<User> {
     @Id
-    @SequenceGenerator(name = "user_sequense", sequenceName = "user_sequence", allocationSize = 1)
+    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
 
     private Long id;

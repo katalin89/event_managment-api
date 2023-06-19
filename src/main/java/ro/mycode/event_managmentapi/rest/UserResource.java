@@ -55,11 +55,19 @@ public class UserResource {
 
    }
 
-   @DeleteMapping("deleteByid/{id}")
-   ResponseEntity<String>deleteByEventTitle(@PathVariable Map<Long,String> pathVarsMap){
+//   @DeleteMapping("deleteEventByEventTitle/{id}")
+//   ResponseEntity<String>deleteByEventTitle(@PathVariable Map<Long,String> pathVarsMap){
+//        this.userService.deleteEventByEventId(Long.parseLong(pathVarsMap.get("id")));
+//        return new ResponseEntity<>(pathVarsMap.get("id"),HttpStatus.ACCEPTED);
+//   }
+
+    // @PathVariable trimite prin url
+    @DeleteMapping("deleteEventByEventTitle/{id}")
+
+    ResponseEntity<String> deleteByEventTitle(@PathVariable Map<Long, String> pathVarsMap){
         this.userService.deleteEventByEventId(Long.parseLong(pathVarsMap.get("id")));
         return new ResponseEntity<>(pathVarsMap.get("id"),HttpStatus.ACCEPTED);
-   }
+    }
     @PostMapping("login")
     public ResponseEntity<User>getUser(@Valid @RequestBody LoginDTO user){
 

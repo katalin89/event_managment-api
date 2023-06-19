@@ -57,18 +57,45 @@ public class UserService {
         }
     }
 
-    @Transactional
-    @Modifying
+//    @Transactional
+//    @Modifying
+//    public void deleteEventByEventTitle(Long userId, String eventTitle) throws EventNotFoundException {
+//        Optional<Event> byTitle = eventRepo.findEventByEventTitle(eventTitle);
+//        if (byTitle.get().getId() == userId) {
+//            if (byTitle != null) {
+//                Optional<User> optionalUser = userRepo.findById(userId);
+//
+//                if (optionalUser.isPresent()) {
+//                    User user = optionalUser.get();
+//                    if (user.exists(byTitle.get().getId())) {
+//                        user.deleteEvent(byTitle.get());
+//                        userRepo.saveAndFlush(user);
+//                    } else {
+//                        throw new UserHaveNotThatEventException();
+//                    }
+//
+//                } else {
+//                    throw new UserNotFoundException();
+//                }
+//            } else
+//
+//                throw new EventNotFoundException();
+//        } else {
+//            throw new UserHaveNotThatEventException();
+//        }
+//    }
+
     public void deleteEventByEventTitle(Long userId, String eventTitle) throws EventNotFoundException {
-        Optional<Event> byTitle = eventRepo.findEventByEventTitle(eventTitle);
-        if (byTitle.get().getId() == userId) {
-            if (byTitle != null) {
+        Optional<Event> byName = eventRepo.findEventByEventTitle(eventTitle);
+
+        if (byName.get().getId() == userId) {
+            if (byName != null) {
                 Optional<User> optionalUser = userRepo.findById(userId);
 
                 if (optionalUser.isPresent()) {
                     User user = optionalUser.get();
-                    if (user.exists(byTitle.get().getId())) {
-                        user.deleteEvent(byTitle.get());
+                    if (user.exists(byName.get().getId())) {
+                        user.deleteEvent(byName.get());
                         userRepo.saveAndFlush(user);
                     } else {
                         throw new UserHaveNotThatEventException();
@@ -148,17 +175,32 @@ public class UserService {
 
     }
 
-    public  void  deleteEventByEventId(Long id){
-        Optional byTitle=eventRepo.findById(id);
+//    public  void  deleteEventByEventId(Long userId) throws EventNotFoundException {
+//        Optional byTitle = eventRepo.findById(userId);
+//
+//        if(!byTitle.isPresent()){
+//            throw new EventNotFoundException();
+//        }
+//        else {
+//            Event event=(Event)byTitle.get();
+//            event.setUser(null);
+//            eventRepo.saveAndFlush(event);
+//        }
+//    }
+//
 
-        if(!byTitle.isPresent()){
+    public void deleteEventByEventId(Long id) {
+
+        Optional byName = eventRepo.findById(id);
+
+        if (!byName.isPresent()) {
             throw new EventNotFoundException();
-        }
-        else {
-            Event event=(Event) byTitle.get();
-            event.setUser(null);
-            eventRepo.saveAndFlush(event);
+        } else {
+//            Event event = (Event) byName.get();
+//            event.setUser(null);
+//            eventRepo.saveAndFlush(event);
+            eventRepo.deleteById(id);
+            eventRepo.flush();
         }
     }
-
 }

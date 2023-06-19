@@ -34,6 +34,7 @@ public class EventService {
         }
 
         if(!event.getEventTitle().equals("")){
+
             eventByEventId.get().setEventTitle(event.getEventTitle());
         }
 

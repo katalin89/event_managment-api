@@ -21,10 +21,13 @@ import java.time.LocalDate;
 @Table(name="events")
 //putem adauga events
 @SuperBuilder
+
+
 public class Event implements Comparable<Event>{
 
     @Id
     @SequenceGenerator(name="event_sequence",sequenceName = "event_sequence",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "event_sequence")
     private Long id;
 
 

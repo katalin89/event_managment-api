@@ -191,16 +191,12 @@ public class UserService {
 
     public void deleteEventByEventId(Long id) {
 
-        Optional byName = eventRepo.findById(id);
+        Optional<Event> byName = eventRepo.findById(id);
 
-        if (!byName.isPresent()) {
-            throw new EventNotFoundException();
-        } else {
-//            Event event = (Event) byName.get();
-//            event.setUser(null);
-//            eventRepo.saveAndFlush(event);
+        if(byName!=null){
             eventRepo.deleteById(id);
-            eventRepo.flush();
+        }else{
+            throw new EventNotFoundException();
         }
     }
 }

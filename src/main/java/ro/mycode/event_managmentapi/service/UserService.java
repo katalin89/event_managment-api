@@ -189,12 +189,14 @@ public class UserService {
 //    }
 //
 
+    @Transactional
     public void deleteEventByEventId(Long id) {
 
         Optional<Event> byName = eventRepo.findById(id);
 
         if(byName!=null){
             eventRepo.deleteById(id);
+            eventRepo.flush();
         }else{
             throw new EventNotFoundException();
         }

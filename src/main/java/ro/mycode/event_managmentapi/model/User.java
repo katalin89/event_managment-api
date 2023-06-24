@@ -64,7 +64,7 @@ public class User implements Comparable<User> {
             mappedBy = "user",
             cascade = CascadeType.ALL,
             orphanRemoval = true,
-            fetch = FetchType.EAGER
+            fetch = FetchType.LAZY
     )
     @JsonBackReference
     @ToString.Exclude
